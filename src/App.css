@@ -1,0 +1,172 @@
+/* ── App container ──────────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 560px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1f2937;
+}
+
+/* ── Shared card style (scoreboard, game status) ────────────────────────── */
+.scoreboard,
+.game-status {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e6ef;
+  border-radius: 10px;
+}
+
+/* ── Scoreboard ─────────────────────────────────────────────────────────── */
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.score-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.score-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #1f2937;
+}
+
+/* Player colour accents on the score numbers */
+.score-item--red    .score-value { color: #e53935; }
+.score-item--yellow .score-value { color: #c99a00; } /* darkened so it reads on white */
+
+/* ── Game status ─────────────────────────────────────────────────────────── */
+.game-status {
+  padding: 0.65rem 1.25rem;
+  text-align: center;
+}
+
+.status-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ── Board ───────────────────────────────────────────────────────────────── */
+.board-wrapper {
+  width: min(90vw, 560px);
+}
+
+.column-buttons {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.column-btn {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  border-radius: 4px;
+  transition: color 0.12s, background 0.12s;
+}
+
+.column-btn:hover:not(:disabled) {
+  color: #1e5bd8;
+  background: rgba(30, 91, 216, 0.08);
+}
+
+.column-btn:focus-visible {
+  outline: 2px solid #1e5bd8;
+  outline-offset: 2px;
+}
+
+.column-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/* Bright blue board — empty cells show through as "holes" */
+.board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+  background: #1e5bd8;
+  border-radius: 14px;
+  padding: 10px;
+}
+
+/* ── Cell ────────────────────────────────────────────────────────────────── */
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Circular cut-out that looks like a hole in the blue board */
+  background: #f4f6fb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.piece {
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+}
+
+/* Empty piece matches the page background — invisible against the cell */
+.piece--empty  { background: #f4f6fb; }
+.piece--red    { background: #e53935; }
+.piece--yellow { background: #fdd835; }
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+/* Single consistent style for both Restart Game and Reset Scores */
+.btn {
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.55rem 1.4rem;
+  background: #1f2937;
+  color: #ffffff;
+  transition: background 0.12s;
+}
+
+.btn:hover    { background: #374151; }
+.btn:focus-visible { outline: 2px solid #1e5bd8; outline-offset: 2px; }
+
+/* Slight size difference so the inline Reset Scores doesn't overpower the scoreboard */
+.btn--secondary {
+  font-size: 0.78rem;
+  padding: 0.4rem 0.9rem;
+}
+
+/* ── Responsive tweaks ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .title       { font-size: 1.5rem; }
+  .score-value { font-size: 1.4rem; }
+  .board       { gap: 5px; padding: 8px; }
+}
